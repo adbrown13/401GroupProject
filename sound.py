@@ -21,9 +21,9 @@ class audioOnly(Frame):
         #Put in a "Please Listen" picture
         listen = Image.open("Resources/PleaseListen.jpg")
         listenImg = ImageTk.PhotoImage(listen)
-        label = Label(self, image=listenImg)
-        label.image = listenImg
-        label.place(x=20, y=20)
+        soundLabel = Label(self, image=listenImg)
+        soundLabel.image = listenImg
+        soundLabel.place(x=20, y=20)
 
 
 #Get the duration of the sound clip
@@ -50,9 +50,9 @@ def main():
     freq = getFreq( fname )
     
     window = audioOnly(root)
-    #pygame.mixer.init(frequency=freq, channels=2)
-    #pygame.mixer.music.load( fname )
-    #pygame.mixer.music.play()
+    pygame.mixer.init(frequency=freq, channels=2)
+    pygame.mixer.music.load( fname )
+    pygame.mixer.music.play()
     
     #After the music ends, remove the screen
     root.after(duration,root.destroy)
