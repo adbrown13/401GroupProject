@@ -19,7 +19,7 @@ class audioOnly(Frame):
         style.configure("Tframe", background="#333")
         
         #Put in a "Please Listen" picture
-        listen = Image.open("PleaseListen.jpg")
+        listen = Image.open("Resources/PleaseListen.jpg")
         listenImg = ImageTk.PhotoImage(listen)
         label = Label(self, image=listenImg)
         label.image = listenImg
@@ -43,16 +43,16 @@ def getFreq( fname ):
 def main():
     fname = "024Cartoon Description Demo-.wav"
     root = Tk()
-    root.geometry( "640x640+400+300" ) #20 pixel buffer on each side
+    root.geometry( "640x640+300+200" ) #20 pixel buffer on each side
     root.overrideredirect(1) #remove top toolbar
 
     duration = getWavDuration( fname )
     freq = getFreq( fname )
     
     window = audioOnly(root)
-    pygame.mixer.init(frequency=freq, channels=2)
-    pygame.mixer.music.load( fname )
-    pygame.mixer.music.play()
+    #pygame.mixer.init(frequency=freq, channels=2)
+    #pygame.mixer.music.load( fname )
+    #pygame.mixer.music.play()
     
     #After the music ends, remove the screen
     root.after(duration,root.destroy)
