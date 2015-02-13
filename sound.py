@@ -45,7 +45,7 @@ def main():
     root = Toplevel()
     
     root.geometry( "640x640+300+200" ) #20 pixel buffer on each side
-    root.overrideredirect(1) #remove top toolbar
+    #root.overrideredirect(1) #remove top toolbar
 
     duration = getWavDuration( fname )
     freq = getFreq( fname )
