@@ -19,7 +19,7 @@ def mainloop():
 
 	w, h = top.winfo_screenwidth(), top.winfo_screenheight()
 	#top.overrideredirect(1)
-	top.geometry("%dx%d+0+0" % (w, h))
+	top.geometry("%dx%d+0+0" % (w/2, h/2))
 
 
 

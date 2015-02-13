@@ -1,6 +1,6 @@
 import sys, wave, contextlib, math
 from PIL import Image, ImageTk
-from Tkinter import Tk, Label, BOTH
+from Tkinter import Tk, Label, BOTH, Toplevel
 from ttk import Frame, Style
 
 
@@ -42,7 +42,8 @@ def getFreq( fname ):
 
 def main():
     fname = "024Cartoon Description Demo-.wav"
-    root = Tk()
+    root = Toplevel()
+    
     root.geometry( "640x640+300+200" ) #20 pixel buffer on each side
     root.overrideredirect(1) #remove top toolbar
 
