@@ -40,7 +40,8 @@ def getFreq( fname ):
     with contextlib.closing(wave.open(fname, 'r')) as f:
         return f.getframerate()
 
-def main( fname ):
+def main():
+    fname = "024Cartoon Description Demo-.wav"
     root = Tk()
     root.geometry( "640x640+400+300" ) #20 pixel buffer on each side
     root.overrideredirect(1) #remove top toolbar
@@ -63,5 +64,5 @@ if __name__ == '__main__':
         fname = "024CartoonDescriptionDemo-.wav"
     else:
         fname = sys.argv[1]
-    main( fname )
+    main()
 
