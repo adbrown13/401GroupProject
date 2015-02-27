@@ -1,6 +1,6 @@
-import sys, wave, contextlib, math
+import sys, wave, contextlib, math, time, pyglet
 from PIL import Image, ImageTk
-from Tkinter import Tk, Label, BOTH
+from Tkinter import Tk, Label, BOTH, Toplevel
 from ttk import Frame, Style
 
 
@@ -21,9 +21,9 @@ class audioOnly(Frame):
         #Put in a "Please Listen" picture
         listen = Image.open("Resources/PleaseListen.jpg")
         listenImg = ImageTk.PhotoImage(listen)
-        label = Label(self, image=listenImg)
-        label.image = listenImg
-        label.place(x=20, y=20)
+        soundLabel = Label(self, image=listenImg)
+        soundLabel.image = listenImg
+        soundLabel.place(x=20, y=20)
 
 
 #Get the duration of the sound clip
@@ -40,28 +40,27 @@ def getFreq( fname ):
     with contextlib.closing(wave.open(fname, 'r')) as f:
         return f.getframerate()
 
-def main( fname ):
-    root = Tk()
+def main( soundFileName ):
+    root = Toplevel()
+    
     root.geometry( "640x640+300+200" ) #20 pixel buffer on each side
-    root.overrideredirect(1) #remove top toolbar
-
-    duration = getWavDuration( fname )
-    freq = getFreq( fname )
+    #root.overrideredirect(1) #remove top toolbar
     
     window = audioOnly(root)
-    #pygame.mixer.init(frequency=freq, channels=2)
-    #pygame.mixer.music.load( fname )
-    #pygame.mixer.music.play()
+
+    soundPlayer = pyglet.media.Player()
+    soundFile = pyglet.media.load( soundFileName )
+    soundPlayer.queue( soundFile )
+    soundPlayer.play()
     
     #After the music ends, remove the screen
-    root.after(duration,root.destroy)
+    root.after(int(soundFile.duration*1000),root.destroy)
     root.mainloop()
 
 if __name__ == '__main__':
     if (len(sys.argv) == 1):
         #default to sound recorded during tour
-        fname = "024CartoonDescriptionDemo-.wav"
+        fname = "new.avi"
     else:
         fname = sys.argv[1]
     main( fname )
-
