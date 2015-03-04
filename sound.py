@@ -1,7 +1,8 @@
-import sys, wave, contextlib, math, time, pyglet
+import sys, wave, contextlib, math, time, pyglet, os, random
 from PIL import Image, ImageTk
 from Tkinter import Tk, Label, BOTH, Toplevel
 from ttk import Frame, Style
+
 
 
 class audioOnly(Frame):
@@ -42,6 +43,8 @@ def getFreq( fname ):
 
 def run_audio( ):
     root = Toplevel()
+    #Choose a random file from the /derp folder
+    #soundFileName = random.choice(os.listdir(os.getcwd() + "/derp"))
     soundFileName='new.avi'
     root.geometry( "640x640+300+200" ) #20 pixel buffer on each side
     #root.overrideredirect(1) #remove top toolbar
@@ -60,6 +63,8 @@ def run_audio( ):
 
 def run_muted( ):
     root = Toplevel()
+    #Choose a random file from the /derp folder
+    #vidPath = random.choice(os.listdir(os.getcwd() + "/derp"))
     vidPath='new.avi'
     root.geometry( "640x640+300+200" ) #20 pixel buffer on each side
     window = pyglet.window.Window() 
@@ -78,6 +83,8 @@ def run_muted( ):
 
 def run_all( ):
     root = Toplevel()
+    #Choose a random file from the /derp folder
+    #vidPath = random.choice(os.listdir(os.getcwd() + "/derp"))
     vidPath='new.avi'
     root.geometry( "640x640+300+200" ) #20 pixel buffer on each side
     window = pyglet.window.Window() 
