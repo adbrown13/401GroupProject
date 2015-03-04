@@ -1,8 +1,10 @@
 import btk
 from mpl_toolkits.mplot3d import Axes3D
+import matplotlib
 import matplotlib.animation as animation
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 
 def runsim():
 	#set up 
@@ -19,9 +21,8 @@ def runsim():
 	data = data.T
 	data = np.delete(data, 0, axis=0)  
 	data[data==0] = np.NaN            
-	dat = data[:, 130:340, :]
+	dat = data[:, :, :]
 	freq = acq.GetPointFrequency()
-	plt.rcParams['toolbar'] = 'None'
 	fig = plt.figure()
 	ax = fig.add_axes([0, 0, 1, 1], projection='3d')
 	#ax.view_init(10, 150)
@@ -30,7 +31,7 @@ def runsim():
 	    pts += ax.plot([], [], [], 'o')
 
 	ax.set_xlim3d([np.nanmin(dat[:, :, 0]), np.nanmax(dat[:, :, 0])])
-	ax.set_ylim3d([np.nanmin(dat[:, :, 1])-400, np.nanmax(dat[:, :, 1])+400])
+	ax.set_ylim3d([np.nanmin(dat[:, :, 1]), np.nanmax(dat[:, :, 1])])
 	ax.set_zlim3d([np.nanmin(dat[:, :, 2]), np.nanmax(dat[:, :, 2])])
 
 
@@ -41,9 +42,13 @@ def runsim():
 	        pt.set_data(x[-1:], y[-1:])
 	        pt.set_3d_properties(z[-1:])   
 	    return pts
-
+	Writer=animation.writers['ffmpeg']
+	writer=Writer(fps=freq)
 	# Animation object
-	anim = animation.FuncAnimation(fig, func=animate, frames=dat.shape[1], interval=1000/freq, blit=False, repeat=False)
-	plt.ioff()
-	plt.show()
+	anim = animation.FuncAnimation(fig, func=animate, frames=dat.shape[1], blit=True, repeat='False')
+	anim.save('walk5.avi',writer=writer)
+	#plt.show()
+	os.system('ffmpeg -i walk5.avi -i 024CartoonDescriptionDemo.wav -vcodec copy -acodec copy new.avi')
+	
+
 

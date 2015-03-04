@@ -19,11 +19,11 @@ class audioOnly(Frame):
         style.configure("Tframe", background="#333")
         
         #Put in a "Please Listen" picture
-        listen = Image.open("Resources/PleaseListen.jpg")
-        listenImg = ImageTk.PhotoImage(listen)
-        soundLabel = Label(self, image=listenImg)
-        soundLabel.image = listenImg
-        soundLabel.place(x=20, y=20)
+        #listen = Image.open("Resources/PleaseListen.jpg")
+        #listenImg = ImageTk.PhotoImage(listen)
+        #soundLabel = Label(self, image=listenImg)
+        #soundLabel.image = listenImg
+        #soundLabel.place(x=20, y=20)
 
 
 #Get the duration of the sound clip
@@ -40,9 +40,9 @@ def getFreq( fname ):
     with contextlib.closing(wave.open(fname, 'r')) as f:
         return f.getframerate()
 
-def main( soundFileName ):
+def run_audio( ):
     root = Toplevel()
-    
+    soundFileName='new.avi'
     root.geometry( "640x640+300+200" ) #20 pixel buffer on each side
     #root.overrideredirect(1) #remove top toolbar
     
@@ -50,6 +50,7 @@ def main( soundFileName ):
 
     soundPlayer = pyglet.media.Player()
     soundFile = pyglet.media.load( soundFileName )
+    soundPlayer.volume=10
     soundPlayer.queue( soundFile )
     soundPlayer.play()
     
@@ -57,11 +58,49 @@ def main( soundFileName ):
     root.after(int(soundFile.duration*1000),root.destroy)
     root.mainloop()
 
+def run_muted( ):
+    root = Toplevel()
+    vidPath='new.avi'
+    root.geometry( "640x640+300+200" ) #20 pixel buffer on each side
+    window = pyglet.window.Window() 
+    player = pyglet.media.Player() 
+    player.volume=0
+    source = pyglet.media.StreamingSource() 
+    MediaLoad = pyglet.media.load(vidPath) 
+    player.queue(MediaLoad) 
+    player.play() 
+    @window.event 
+    def on_draw(): 
+        window.clear() 
+        if player.source and player.source.video_format: 
+            player.get_texture().blit(0,0) 
+    pyglet.app.run()
+
+def run_all( ):
+    root = Toplevel()
+    vidPath='new.avi'
+    root.geometry( "640x640+300+200" ) #20 pixel buffer on each side
+    window = pyglet.window.Window() 
+    player = pyglet.media.Player() 
+    player.volume=10
+    source = pyglet.media.StreamingSource() 
+    MediaLoad = pyglet.media.load(vidPath) 
+    player.queue(MediaLoad) 
+    player.play() 
+    @window.event 
+    def on_draw(): 
+        window.clear() 
+        if player.source and player.source.video_format: 
+            player.get_texture().blit(0,0) 
+    pyglet.app.run()
+  
+
+
 if __name__ == '__main__':
     if (len(sys.argv) == 1):
         #default to sound recorded during tour
         fname = "new.avi"
     else:
         fname = sys.argv[1]
-    main( fname )
+    main( )
 

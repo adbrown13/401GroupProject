@@ -3,7 +3,7 @@
 import Tkinter
 import tkMessageBox
 import sound
-#import idk
+import idk
 
 
 def mainloop():
@@ -27,13 +27,13 @@ def mainloop():
 	def popup():
 		top.destroy()
 
-	audiobutton = Tkinter.Button(label, text="Audio", font=("Helvetica",15), command = sound.main)
+	audiobutton = Tkinter.Button(label, text="Audio", font=("Helvetica",15), command = sound.run_audio)
 	audiobutton.pack(fill=Tkinter.BOTH, expand=1)
 
-	videobutton = Tkinter.Button(label, text="Video", font=("Helvetica",15))#), command = idk.runsim)
+	videobutton = Tkinter.Button(label, text="Video", font=("Helvetica",15), command = sound.run_muted)
 	videobutton.pack(fill=Tkinter.BOTH, expand=1)
 
-	avbutton = Tkinter.Button(label, text="Audio-Video", font=("Helvetica",15))
+	avbutton = Tkinter.Button(label, text="Audio-Video", font=("Helvetica",15), command = sound.run_all)
 	avbutton.pack(fill=Tkinter.BOTH, expand=1)
 
 
