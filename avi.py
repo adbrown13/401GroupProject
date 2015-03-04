@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-def runsim():
+def makeAvi():
 	#set up 
 	reader = btk.btkAcquisitionFileReader()  
 	reader.SetFilename("walk5.c3d")
