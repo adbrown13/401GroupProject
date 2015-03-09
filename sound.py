@@ -79,6 +79,7 @@ def run_muted( ):
     player.play()
 
     def on_eos(dt):
+        player.pause()
         window.close()
         pyglet.app.exit()
         
@@ -105,6 +106,7 @@ def run_all( ):
     player.play()
 
     def on_eos(dt):
+        player.pause()
         window.close()
         pyglet.app.exit()
         
