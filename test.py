@@ -34,20 +34,20 @@ def mainloop():
 
 	type_of_file_to_play = random.choice(["1","2","3"])
 
-	#if(type_of_file_to_play == "1"):
+	if(type_of_file_to_play == "1"):
 	#	sound.run_audio()
-	audiobutton = Tkinter.Button(label, text="Audio", font=("Helvetica",15), command = run_audio)
-	audiobutton.pack(fill=Tkinter.BOTH, expand=1)
+		audiobutton = Tkinter.Button(label, text="Audio", font=("Helvetica",15), command = run_audio)
+		audiobutton.pack(fill=Tkinter.BOTH, expand=1)
 
-	#if(type_of_file_to_play == "2"):
+	if(type_of_file_to_play == "2"):
 	#	sound.run_muted()
-	videobutton = Tkinter.Button(label, text="Video", font=("Helvetica",15), command = run_video)
-	videobutton.pack(fill=Tkinter.BOTH, expand=1)
-
-	#if(type_of_file_to_play == "3"):
+		videobutton = Tkinter.Button(label, text="Video", font=("Helvetica",15), command = run_video)
+		videobutton.pack(fill=Tkinter.BOTH, expand=1)
+	
+	if(type_of_file_to_play == "3"):
 	#	sound.run_all()
-	avbutton = Tkinter.Button(label, text="Audio-Video", font=("Helvetica",15), command = run_audiovideo)
-	avbutton.pack(fill=Tkinter.BOTH, expand=1)
+		avbutton = Tkinter.Button(label, text="Audio-Video", font=("Helvetica",15), command = run_audiovideo)
+		avbutton.pack(fill=Tkinter.BOTH, expand=1)
 
 
 	top.mainloop()

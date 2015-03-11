@@ -106,7 +106,9 @@ def run_all( ):
     player.play()
 
     def on_eos(dt):
+	print "hello"
         player.pause()
+	print "world"
         window.close()
         pyglet.app.exit()
         
@@ -115,8 +117,9 @@ def run_all( ):
         window.clear() 
         if player.source and player.source.video_format: 
             player.get_texture().blit(0,0)
-    
-    pyglet.clock.schedule_once(on_eos, player.source.duration-0.25)
+    print "work"      
+    pyglet.clock.schedule_once(on_eos, player.source.duration)
+    print player.source.duration
     pyglet.app.run()
   
 
