@@ -3,24 +3,34 @@
 import Tkinter
 import tkMessageBox
 import sound
+import time
+import randomfilechooser
 
 import random
 
 def mainloop():
 	top = Tkinter.Tk()
 	top.title("Experiment")
+	mediaFileNames = randomfilechooser.chooseRandomFile()
+	print mediaFileNames
 
 	def run_video():
                 top.withdraw()
-                sound.run_muted()
+                for i in mediaFileNames:
+                        sound.run_muted(i)
+                        time.sleep(2)
                 top.deiconify()
 	def run_audiovideo():
                 top.withdraw()
-                sound.run_all()
+                for i in mediaFileNames:
+                        sound.run_all(i)
+                        time.sleep(2)
                 top.deiconify()
 	def run_audio():
                 top.withdraw()
-                sound.run_audio()
+                for i in mediaFileNames:
+                        sound.run_audio(i)
+                        time.sleep(2)
                 top.deiconify()
 
 	var ="Choose the type of file you want to view"

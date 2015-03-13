@@ -1,81 +1,39 @@
-import sys, wave, contextlib, math, time, pyglet, os, random
-from PIL import Image, ImageTk
-from Tkinter import Tk, Label, BOTH, Toplevel
-from ttk import Frame, Style
+import sys, time, pyglet
 
-
-
-class audioOnly(Frame):
+def run_audio( soundFileName ):
     
-    def __init__(self, parent):
-        Frame.__init__(self, parent)
-        self.parent = parent
-        self.initUI()
-    
-    def initUI(self):
-        self.parent.title("Please Listen")
-        self.pack(fill=BOTH, expand=1)
-        
-        style = Style()
-        style.configure("Tframe", background="#333")
-        
-        #Put in a "Please Listen" picture
-       # listen = Image.open("Resources/PleaseListen.jpg")
-       # listenImg = ImageTk.PhotoImage(listen)
-       # soundLabel = Label(self, image=listenImg)
-       # soundLabel.image = listenImg
-       # soundLabel.place(x=20, y=20)
-
-
-#Get the duration of the sound clip
-def getWavDuration( fname ):
-    with contextlib.closing(wave.open(fname, 'r')) as f:
-        frames = f.getnframes()
-        rate = f.getframerate()
-        duration = frames / float(rate)
-        return int(math.ceil(duration*1000))
-
-#Get wav file frequency.  Use to get frequency before playing
-#Wrong frequency can result in differently-pitched voices
-def getFreq( fname ):
-    with contextlib.closing(wave.open(fname, 'r')) as f:
-        return f.getframerate()
-
-def run_audio( ):
-    root = Toplevel()
-    #Choose a random file from the /derp folder
-    #soundFileName = random.choice(os.listdir(os.getcwd() + "/derp"))
-    soundFileName='new.avi'
-    root.geometry( "640x640+300+200" ) #20 pixel buffer on each side
-    #root.overrideredirect(1) #remove top toolbar
-
-    def quit_playing():
-        root.destroy()
-        root.quit()
-    
-    window = audioOnly(root)
+    window = pyglet.window.Window(width=600, height=600)
+    pleaseListenImage = pyglet.image.load('Resources/PleaseListen.jpg').get_texture()
 
     soundPlayer = pyglet.media.Player()
-    soundFile = pyglet.media.load( soundFileName )
     soundPlayer.volume=10
+
+    def next_song(dt):
+        soundPlayer.pause()
+        window.close()
+        pyglet.app.exit()
+
+    @window.event 
+    def on_draw(): 
+        window.clear()
+        pleaseListenImage.blit(0,0)
+
+    soundFile = pyglet.media.load( soundFileName )
     soundPlayer.queue( soundFile )
-    soundPlayer.play()
     
-    #After the music ends, remove the screen
-    root.after(int(soundFile.duration*1000),quit_playing)
-    root.mainloop()
+    soundPlayer.play()
+    pyglet.clock.schedule_once(next_song, soundPlayer.source.duration-0.25)
+    pyglet.app.run()
+    return
 
-def run_muted( ):
-    #Choose a random file from the /derp folder
-    #vidPath = random.choice(os.listdir(os.getcwd() + "/derp"))
-    vidPath='walk6.avi'
+def run_muted( fileName ):
 
-    window = pyglet.window.Window() 
+    window = pyglet.window.Window(width=800, height=600) 
     player = pyglet.media.Player() 
     player.volume=0
     
-    MediaLoad = pyglet.media.load(vidPath) 
-    player.queue(MediaLoad) 
+    MediaLoad = pyglet.media.load(fileName) 
+    player.queue(MediaLoad)
     player.play()
 
     def on_eos(dt):
@@ -91,18 +49,15 @@ def run_muted( ):
     
     pyglet.clock.schedule_once(on_eos, player.source.duration-0.25)
     pyglet.app.run()
+    return
 
-def run_all( ):
-    #Choose a random file from the /derp folder
-    #vidPath = random.choice(os.listdir(os.getcwd() + "/derp"))
-    vidPath='walk5.avi'
-    
-    window = pyglet.window.Window() 
+def run_all( fileName ):
+    window = pyglet.window.Window(width=800, height=600) 
     player = pyglet.media.Player() 
     player.volume=10
 
-    MediaLoad = pyglet.media.load(vidPath) 
-    player.queue(MediaLoad) 
+    MediaLoad = pyglet.media.load(fileName)
+    player.queue(MediaLoad)
     player.play()
 
     def on_eos(dt):
@@ -118,7 +73,7 @@ def run_all( ):
     
     pyglet.clock.schedule_once(on_eos, player.source.duration-0.25)
     pyglet.app.run()
-  
+    return
 
 
 if __name__ == '__main__':
