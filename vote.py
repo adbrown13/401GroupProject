@@ -5,9 +5,10 @@ import datetime
 
 class App:
  
-    def __init__(self, master):
-        self.master = master
- 
+    def __init__(self, filename):
+        self.master = Tk()
+        
+        self.filename = filename
         #call start to initialize to create the UI elemets
         self.start()
  
@@ -64,12 +65,19 @@ class App:
         #button to save data to csv
         self.submit = Button(self.master, text="Continue", command=self.start_processing, fg="red")
         self.submit.grid(row=6, column=0)
- 
+        
+        self.master.wait_window()
     def start_processing(self):
-		    f = open('data.csv', 'a')
-		    f.write(self.radio_var.get() + ',' +  self.fem.get() + ',' + self.natty.get() + '\n')
-		    f.close()
+	    f = open('data.csv', 'a')
+            filename = self.filename.split("/")
+	    f.write(filename[1] + ',' + self.radio_var.get() + ',' +  self.fem.get() + ',' + self.natty.get() + '\n')
+	    f.close()
+            self.master.destroy()
+            
 
-root = Tk()
-app = App(root)
-root.mainloop()
+
+
+        
+
+
+

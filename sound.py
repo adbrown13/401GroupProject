@@ -1,4 +1,5 @@
 import sys, time, pyglet
+import vote
 
 def run_audio( soundFileName ):
     
@@ -11,6 +12,7 @@ def run_audio( soundFileName ):
     def next_song(dt):
         soundPlayer.pause()
         window.close()
+        voting = vote.App(soundFileName)
         pyglet.app.exit()
 
     @window.event 

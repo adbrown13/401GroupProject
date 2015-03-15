@@ -44,10 +44,10 @@ def mainloop():
 
 	type_of_file_to_play = random.choice(["1","2","3"])
 
-	if(type_of_file_to_play == "1"):
+	#if(type_of_file_to_play == "1"):
 	#	sound.run_audio()
-		audiobutton = Tkinter.Button(label, text="Audio", font=("Helvetica",15), command = run_audio)
-		audiobutton.pack(fill=Tkinter.BOTH, expand=1)
+	audiobutton = Tkinter.Button(label, text="Audio", font=("Helvetica",15), command = run_audio)
+	audiobutton.pack(fill=Tkinter.BOTH, expand=1)
 
 	if(type_of_file_to_play == "2"):
 	#	sound.run_muted()
