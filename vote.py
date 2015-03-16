@@ -5,10 +5,11 @@ import datetime
 
 class App:
  
-    def __init__(self, filename):
+    def __init__(self, filename,audio):
         self.master = Tk()
         
         self.filename = filename
+        self.audio = audio
         #call start to initialize to create the UI elemets
         self.start()
  
@@ -26,7 +27,7 @@ class App:
         RADIO_BUTTON = [
             ("Man", "M"),
             ("Woman","W"),
-            ("I don't know","N")
+            ("Can't decide","C")
         ]
  
         #initialize a variable to store the selected value of the radio buttons
@@ -44,7 +45,7 @@ class App:
             i += 1
 
         #create a variable with text
-        label02 = "I would rate the femininity of the speaker as:"
+        label02 = "How masculine-feminine is this speaker? (Enter a number)"
         Label(self.master, text=label02).grid(row=2, column=0, sticky=W)
 
         #Feminintiy entry
@@ -53,14 +54,15 @@ class App:
         self.fem.focus_set()
         self.fem.grid(row=3,column=0)
 
-        label03 = "I would rate the naturalness of the speaker as:"
-        Label(self.master, text=label03).grid(row=4, column=0, sticky=W)
+        if(self.audio):
+            label03 = "How natural does this speaker's voice sound? (Enter a number)"
+            Label(self.master, text=label03).grid(row=4, column=0, sticky=W)
 
-        #Naturalness entry
-        self.natty = Entry(self.master)
-        self.natty["width"] = 10
-        self.natty.focus_set()
-        self.natty.grid(row=5,column=0)
+            #Naturalness entry
+            self.natty = Entry(self.master)
+            self.natty["width"] = 10
+            self.natty.focus_set()
+            self.natty.grid(row=5,column=0)
  
         #button to save data to csv
         self.submit = Button(self.master, text="Continue", command=self.start_processing, fg="red")
@@ -70,7 +72,10 @@ class App:
     def start_processing(self):
 	    f = open('data.csv', 'a')
             filename = self.filename.split("/")
-	    f.write(filename[1] + ',' + self.radio_var.get() + ',' +  self.fem.get() + ',' + self.natty.get() + '\n')
+            if(self.audio):
+    	       f.write(filename[1] + ',' + self.radio_var.get() + ',' +  self.fem.get() + ',' + self.natty.get() + '\n')
+            else:
+                f.write(filename[1] + ',' + self.radio_var.get() + ',' +  self.fem.get() + '\n')
 	    f.close()
             self.master.destroy()
             
