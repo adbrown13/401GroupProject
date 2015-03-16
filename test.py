@@ -42,9 +42,23 @@ def mainloop():
 	#top.overrideredirect(1)
 	top.geometry("%dx%d+0+0" % (w/2, h/2))
 
-	type_of_file_to_play = random.choice(["1","2","3"])
+	def run():
+		type_of_file_to_play = ["1","2","3"]
+		random.shuffle(type_of_file_to_play)
 
-	#if(type_of_file_to_play == "1"):
+		for i in type_of_file_to_play:
+			if(i == "1"):
+				run_video()
+			if(i == "2"):
+				run_audiovideo()
+			if(i == "3"):
+				run_audio()
+
+
+	audiobutton = Tkinter.Button(label, text="Start", font=("Helvetica",15), command = run)
+	audiobutton.pack(fill=Tkinter.BOTH, expand=1)
+	"""
+	if(type_of_file_to_play == "1"):
 	#	sound.run_audio()
 	audiobutton = Tkinter.Button(label, text="Audio", font=("Helvetica",15), command = run_audio)
 	audiobutton.pack(fill=Tkinter.BOTH, expand=1)
@@ -58,7 +72,7 @@ def mainloop():
 	#	sound.run_all()
 		avbutton = Tkinter.Button(label, text="Audio-Video", font=("Helvetica",15), command = run_audiovideo)
 		avbutton.pack(fill=Tkinter.BOTH, expand=1)
-
+	"""
 
 	top.mainloop()
 if __name__=='__main__':

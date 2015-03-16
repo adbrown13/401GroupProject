@@ -41,6 +41,7 @@ def run_muted( fileName ):
     def on_eos(dt):
         player.pause()
         window.close()
+        voting = vote.App(soundFileName)
         pyglet.app.exit()
         
     @window.event 
@@ -65,6 +66,7 @@ def run_all( fileName ):
     def on_eos(dt):
         player.pause()
         window.close()
+        voting = vote.App(soundFileName)
         pyglet.app.exit()
         
     @window.event 
