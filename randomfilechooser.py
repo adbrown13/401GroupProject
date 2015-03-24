@@ -1,18 +1,20 @@
 import os, random
 #Choose a random file from the /derp folder
 
-numOfTestFiles = 4
-numOfRepeatedFiles = 0
-numOfUniqueFiles = numOfTestFiles - numOfRepeatedFiles
+
 
 def chooseRandomFile():
     chosenFiles = []
     availableFiles = os.listdir( os.getcwd() + "/video" )
+    numOfTestFiles = len(availableFiles)
+    numOfRepeatedFiles = int( (numOfTestFiles*0.1) )
+    print(numOfRepeatedFiles)
+    numOfUniqueFiles = numOfTestFiles - numOfRepeatedFiles
 
-    for i in range(0,len(availableFiles)):
+    for i in range(0, numOfTestFiles):
         availableFiles[i] = "video/" + availableFiles[i]
 
-    for i in range(1,numOfUniqueFiles):
+    for i in range(0, numOfTestFiles):
         randomfile = random.choice( list(set(availableFiles)-set(chosenFiles)) )
         chosenFiles.append(randomfile)
 
