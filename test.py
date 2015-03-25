@@ -37,10 +37,18 @@ def mainloop():
 	label = Tkinter.LabelFrame(top, text=var, font=("Helvetica",25)) #, relief=Tkinter.RAISED)
 	label.pack(fill="both", expand="yes")
 
-
-	w, h = top.winfo_screenwidth(), top.winfo_screenheight()
-	#top.overrideredirect(1)
-	top.geometry("%dx%d+0+0" % (w/2, h/2))
+#######FULL SCREEN
+	pad=3
+	top._geom='200x200+0+0'
+	top.geometry("{0}x{1}+0+0".format(
+		top.winfo_screenwidth()-pad, top.winfo_screenheight()-pad))
+          
+	def toggle_geom(top,event):
+		geom=top.winfo_geometry()
+		print(geom,top._geom)
+		top.geometry(top._geom)
+		top._geom=geom
+#######FULL SCREEN
 
 	def run():
 		type_of_file_to_play = ["1","2","3"]
