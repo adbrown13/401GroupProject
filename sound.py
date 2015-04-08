@@ -66,7 +66,7 @@ def run_all( fileName ):
     def on_eos(dt):
         player.pause()
         window.close()
-        voting = vote.App(fileName,0)
+        voting = vote.App(fileName,2)
         pyglet.app.exit()
         
     @window.event 
