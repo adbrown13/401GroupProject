@@ -54,7 +54,7 @@ class App:
         self.fem.focus_set()
         self.fem.grid(row=3,column=0)
 
-        if(self.audio):
+        if(self.audio == 1):
             label03 = "How natural does this speaker's voice sound? (Enter a number)"
             Label(self.master, text=label03).grid(row=4, column=0, sticky=W)
 
@@ -72,10 +72,12 @@ class App:
     def start_processing(self):
 	    f = open('data.csv', 'a')
             filename = self.filename.split("/")
-            if(self.audio):
+            if(self.audio == 1):
     	       f.write(filename[1] + ',1,' + self.radio_var.get() + ',' +  self.fem.get() + ',' + self.natty.get() + '\n')
+            elif(self.audio == 2):
+                f.write(filename[1] + ',2,' + self.radio_var.get() + ',' +  self.fem.get() + '\n')
             else:
-                f.write(filename[1] + ',0,' + self.radio_var.get() + ',' +  self.fem.get() + '\n')
+            	f.write(filename[1] + ',0,' + self.radio_var.get() + ',' +  self.fem.get() + '\n')
 	    f.close()
             self.master.destroy()
             
