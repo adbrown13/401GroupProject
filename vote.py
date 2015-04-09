@@ -72,19 +72,11 @@ class App:
         self.master.wait_window()
     def start_processing(self):
         if (self.mode):
-    	    f = open('data.csv', 'a')
+            f = open('data.csv', 'a')
             filename = self.filename.split("/")
             if(self.audio == 1):
-    	        f.write(filename[1] + ',' +  self.audio + ',' + self.radio_var.get() + ',' +  self.fem.get() + ',' + self.natty.get() + '\n')
+                f.write(filename[1] + ',' +  self.audio + ',' + self.radio_var.get() + ',' +  self.fem.get() + ',' + self.natty.get() + '\n')
             else:
                 f.write(filename[1] + ',' +  self.audio + ',' + self.radio_var.get() + ',' +  self.fem.get() + '\n')
-    	    f.close()
+            f.close()
             self.master.destroy()
-            
-
-
-
-        
-
-
-
