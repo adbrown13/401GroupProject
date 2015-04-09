@@ -32,7 +32,7 @@ class App:
  
         #initialize a variable to store the selected value of the radio buttons
         #set it to A by default
-        self.radio_var = StringVar()
+        self.radio_var = StringVar(master=self.master)
         self.radio_var.set("M")
  
         #create a loop to display the RADIO_BUTTON
