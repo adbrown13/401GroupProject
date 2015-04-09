@@ -1,7 +1,6 @@
 """The avi File is responsible for the conversion of c3d to avi
 """
 import numpy as np
-import pandas as pd
 import matplotlib
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
