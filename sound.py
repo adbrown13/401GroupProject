@@ -1,7 +1,7 @@
 import sys, time, pyglet
 import vote
 
-def run_audio( soundFileName ):
+def run_audio( soundFileName, mode ):
     
     window = pyglet.window.Window(width=600, height=600)
     pleaseListenImage = pyglet.image.load('Resources/PleaseListen.jpg').get_texture()
@@ -12,7 +12,7 @@ def run_audio( soundFileName ):
     def next_song(dt):
         soundPlayer.pause()
         window.close()
-        voting = vote.App(soundFileName,1)
+        voting = vote.App(soundFileName,1,mode)
         pyglet.app.exit()
 
     @window.event 
@@ -28,7 +28,7 @@ def run_audio( soundFileName ):
     pyglet.app.run()
     return
 
-def run_muted( fileName ):
+def run_muted( fileName, mode ):
 
     window = pyglet.window.Window(width=800, height=600) 
     player = pyglet.media.Player() 
@@ -41,7 +41,7 @@ def run_muted( fileName ):
     def on_eos(dt):
         player.pause()
         window.close()
-        voting = vote.App(fileName,0)
+        voting = vote.App(fileName,0,mode)
         pyglet.app.exit()
         
     @window.event 
@@ -54,7 +54,7 @@ def run_muted( fileName ):
     pyglet.app.run()
     return
 
-def run_all( fileName ):
+def run_all( fileName, mode ):
     window = pyglet.window.Window(width=800, height=600) 
     player = pyglet.media.Player() 
     player.volume=10
@@ -66,7 +66,7 @@ def run_all( fileName ):
     def on_eos(dt):
         player.pause()
         window.close()
-        voting = vote.App(fileName,2)
+        voting = vote.App(fileName,2,mode)
         pyglet.app.exit()
         
     @window.event 

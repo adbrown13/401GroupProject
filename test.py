@@ -14,22 +14,22 @@ def mainloop():
 	mediaFileNames = randomfilechooser.chooseRandomFile()
 	print mediaFileNames
 
-	def run_video():
+	def run_video(mode):
                 top.withdraw()
                 for i in mediaFileNames:
-                        sound.run_muted(i)
+                        sound.run_muted(i,mode)
                         time.sleep(2)
                 top.deiconify()
-	def run_audiovideo():
+	def run_audiovideo(mode):
                 top.withdraw()
                 for i in mediaFileNames:
-                        sound.run_all(i)
+                        sound.run_all(i,mode)
                         time.sleep(2)
                 top.deiconify()
-	def run_audio():
+	def run_audio(mode):
                 top.withdraw()
                 for i in mediaFileNames:
-                        sound.run_audio(i)
+                        sound.run_audio(i,mode)
                         time.sleep(2)
                 top.deiconify()
 
@@ -50,21 +50,35 @@ def mainloop():
 		top._geom=geom
 #######FULL SCREEN
 
-	def run():
+	def run_normal():
 		type_of_file_to_play = ["1","2","3"]
 		random.shuffle(type_of_file_to_play)
 
 		for i in type_of_file_to_play:
 			if(i == "1"):
-				run_video()
+				run_video(1)
 			if(i == "2"):
-				run_audiovideo()
+				run_audiovideo(1)
 			if(i == "3"):
-				run_audio()
+				run_audio(1)
 
+	def run_practice():
+		type_of_file_to_play = ["1","2","3"]
+		random.shuffle(type_of_file_to_play)
 
-	audiobutton = Tkinter.Button(label, text="Start", font=("Helvetica",15), command = run)
-	audiobutton.pack(fill=Tkinter.BOTH, expand=1)
+		for i in type_of_file_to_play:
+			if(i == "1"):
+				run_video(0)
+			if(i == "2"):
+				run_audiovideo(0)
+			if(i == "3"):
+				run_audio(0)
+
+	audiobutton1 = Tkinter.Button(label, text="Practice", font=("Helvetica",15), command = run_practice)
+	audiobutton1.pack(fill=Tkinter.BOTH, expand=1)
+
+	audiobutton2 = Tkinter.Button(label, text="Start", font=("Helvetica",15), command = run_normal)
+	audiobutton2.pack(fill=Tkinter.BOTH, expand=1)
 	"""
 	if(type_of_file_to_play == "1"):
 	#	sound.run_audio()
