@@ -2,6 +2,8 @@
 
 import Tkinter
 import tkMessageBox
+import locale
+locale.setlocale(locale.LC_ALL, '')
 import avi
 
 
