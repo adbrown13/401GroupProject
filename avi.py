@@ -12,7 +12,7 @@ import btk
 def makeAvi():
 	#Read in the file
 	reader = btk.btkAcquisitionFileReader()  
-	reader.SetFilename("test1.c3d")
+	reader.SetFilename("monologue3.c3d")
 	acq = reader.GetOutput()                 
 	acq.Update()                             
 	data = np.empty((3, acq.GetPointFrameNumber(), 1))
@@ -35,10 +35,16 @@ def makeAvi():
 	    (1, 5),
 	    (2, 3),
 	    (3, 4),
+	    (3,11),
+	    (4, 13),
 	    (4, 11),
+	    (11,13),
 	    (5, 6),
 	    (6, 7),
+	    (6,12),
 	    (7, 12),
+	    (7, 14),
+	    (12,14),
 	    (8, 9),
 	    (9, 10),
 	    (10, 8)
