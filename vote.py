@@ -5,11 +5,12 @@ import datetime
 
 class App:
  
-    def __init__(self, filename,audio):
+    def __init__(self, filename,audio,mode):
         self.master = Tk()
         
         self.filename = filename
         self.audio = audio
+        self.mode = mode
         #call start to initialize to create the UI elemets
         self.start()
  
@@ -70,21 +71,12 @@ class App:
         
         self.master.wait_window()
     def start_processing(self):
-	    f = open('data.csv', 'a')
+        if (self.mode):
+            f = open('data.csv', 'a')
             filename = self.filename.split("/")
             if(self.audio == 1):
-    	       f.write(filename[1] + ',1,' + self.radio_var.get() + ',' +  self.fem.get() + ',' + self.natty.get() + '\n')
-            elif(self.audio == 2):
-                f.write(filename[1] + ',2,' + self.radio_var.get() + ',' +  self.fem.get() + '\n')
+                f.write(filename[1] + ',' +  self.audio + ',' + self.radio_var.get() + ',' +  self.fem.get() + ',' + self.natty.get() + '\n')
             else:
-            	f.write(filename[1] + ',0,' + self.radio_var.get() + ',' +  self.fem.get() + '\n')
-	    f.close()
+                f.write(filename[1] + ',' +  self.audio + ',' + self.radio_var.get() + ',' +  self.fem.get() + '\n')
+            f.close()
             self.master.destroy()
-            
-
-
-
-        
-
-
-
