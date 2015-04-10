@@ -75,8 +75,8 @@ class App:
             f = open('data.csv', 'a')
             filename = self.filename.split("/")
             if(self.audio == 1):
-                f.write(filename[1] + ',' +  self.audio + ',' + self.radio_var.get() + ',' +  self.fem.get() + ',' + self.natty.get() + '\n')
+                f.write(filename[1] + ',' +  str(self.audio) + ',' + self.radio_var.get() + ',' +  self.fem.get() + ',' + self.natty.get() + '\n')
             else:
-                f.write(filename[1] + ',' +  self.audio + ',' + self.radio_var.get() + ',' +  self.fem.get() + '\n')
+                f.write(filename[1] + ',' +  str(self.audio) + ',' + self.radio_var.get() + ',' +  self.fem.get() + '\n')
             f.close()
             self.master.destroy()
