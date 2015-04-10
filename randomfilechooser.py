@@ -8,7 +8,6 @@ def chooseRandomFile():
     availableFiles = os.listdir( os.getcwd() + "/video" )
     numOfTestFiles = len(availableFiles)
     numOfRepeatedFiles = int( (numOfTestFiles*0.1) )
-    print(numOfRepeatedFiles)
     numOfUniqueFiles = numOfTestFiles - numOfRepeatedFiles
 
     for i in range(0, numOfTestFiles):

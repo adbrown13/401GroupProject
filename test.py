@@ -12,7 +12,6 @@ def mainloop():
 	top = Tkinter.Tk()
 	top.title("Experiment")
 	mediaFileNames = randomfilechooser.chooseRandomFile()
-	print mediaFileNames
 
 	def run_video(mode):
                 top.withdraw()
@@ -45,7 +44,7 @@ def mainloop():
           
 	def toggle_geom(top,event):
 		geom=top.winfo_geometry()
-		print(geom,top._geom)
+		#print(geom,top._geom)
 		top.geometry(top._geom)
 		top._geom=geom
 #######FULL SCREEN

@@ -14,7 +14,7 @@ def makeAvi():
 	#Read in the file
 	reader = btk.btkAcquisitionFileReader() 
 	availableFiles = [f for f in os.listdir( os.getcwd() + "/testdata" )  if  f.endswith(".c3d")]
-	folderfiles=[f for f in os.listdir( os.getcwd() + "/videos" )  if  f.endswith(".avi")]
+	folderfiles=[f for f in os.listdir( os.getcwd() + "/video" )  if  f.endswith(".avi")]
 	for files in availableFiles:
 		name=files.split(".")[0]
 		name2=name+".avi"
@@ -79,8 +79,6 @@ def makeAvi():
 			writer=Writer(fps=freq)
 			anim = animation.FuncAnimation(fig, func=animate,  	frames=dat.shape[1], blit=True, repeat='False')
 			anim.save(name+'.avi',writer=writer)
-			os.system('ffmpeg -i '+name+'.avi -i testdata/'+name+'.wav '+'videos/'+name+'.avi')
-			print "still here"
-		print "im done"
-	print "really done"
+			os.system('ffmpeg -i '+name+'.avi -i testdata/'+name+'.wav '+'video/'+name+'.avi')
+
 
