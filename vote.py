@@ -79,4 +79,4 @@ class App:
             else:
                 f.write(filename[1] + ',' +  str(self.audio) + ',' + self.radio_var.get() + ',' +  self.fem.get() + '\n')
             f.close()
-            self.master.destroy()
+        self.master.destroy()
