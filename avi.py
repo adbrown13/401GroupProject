@@ -63,6 +63,7 @@ def makeAvi():
 			ax.set_xlim3d([np.nanmin(dat[:, :, 0]), np.nanmax(dat	[:, :, 	0])])
 			ax.set_ylim3d([np.nanmin(dat[:, :, 1]), np.nanmax(dat[:, :, 1])])
 			ax.set_zlim3d([np.nanmin(dat[:, :, 2]), np.nanmax(dat[:, :, 2])])
+                        ax.set_visibility(False)
 			ax.view_init(30, 180)
 	
 			def animate(i):
