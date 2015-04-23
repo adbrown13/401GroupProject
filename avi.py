@@ -60,10 +60,14 @@ def makeAvi():
 				pts += ax.plot([], [], [], 'o')
 			for i in stick_defines:
 				stick_lines += ax.plot([], [], [], '-k')
+			
+			ax.xaxis.set_major_formatter(pyplot.NullFormatter())
+			ax.yaxis.set_major_formatter(pyplot.NullFormatter())
+			ax.zaxis.set_major_formatter(pyplot.NullFormatter())
 			ax.set_xlim3d([np.nanmin(dat[:, :, 0]), np.nanmax(dat	[:, :, 	0])])
 			ax.set_ylim3d([np.nanmin(dat[:, :, 1]), np.nanmax(dat[:, :, 1])])
 			ax.set_zlim3d([np.nanmin(dat[:, :, 2]), np.nanmax(dat[:, :, 2])])
-                        ax.set_visibility(False)
+                        #ax.get_xaxis().set_visible(False)
 			ax.view_init(30, 180)
 	
 			def animate(i):
@@ -81,5 +85,5 @@ def makeAvi():
 			anim = animation.FuncAnimation(fig, func=animate,  	frames=dat.shape[1], blit=True, repeat='False')
 			anim.save(name+'.avi',writer=writer)
 			os.system('ffmpeg -i '+name+'.avi -i testdata/'+name+'.wav '+'video/'+name+'.avi')
-
+			#anim.show()
 
